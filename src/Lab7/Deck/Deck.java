@@ -36,6 +36,7 @@ public class Deck {
                         break;
                     case 7:
                         deck.add(new Card7(Card.Suits.values()[j],"7"));
+                        break;
                     case 8:
                         deck.add(new Card8(Card.Suits.values()[j],"8"));
                         break;
