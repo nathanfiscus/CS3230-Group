@@ -37,13 +37,13 @@ public class Deck {
                     case 7:
                         deck.add(new Card7(Card.Suits.values()[j],"7"));
                     case 8:
-                        //deck.add(new Card8(Card.Suits.values()[j],"8"));
+                        deck.add(new Card8(Card.Suits.values()[j],"8"));
                         break;
                     case 9:
-                        //deck.add(new Card9(Card.Suits.values()[j],"9"));
+                        deck.add(new Card9(Card.Suits.values()[j],"9"));
                         break;
                     case 10:
-                        //deck.add(new Card10(Card.Suits.values()[j],"10"));
+                        deck.add(new Card10(Card.Suits.values()[j],"10"));
                         break;
                     case 11:
                         deck.add(new Card1(Card.Suits.values()[j],"J"));
