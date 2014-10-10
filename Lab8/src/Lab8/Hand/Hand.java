@@ -1,6 +1,7 @@
 package Lab8.Hand;
 
 import Lab8.Deck.Cards.*;
+import javafx.scene.Group;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,10 @@ public class Hand {
     }
 
     private void getHighestHand(){
+
+    }
+
+    public Group getHand(){
 
     }
 }

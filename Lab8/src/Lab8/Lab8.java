@@ -2,6 +2,7 @@ package Lab8;
 
 import Lab8.Deck.Cards.Card;
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.layout.Pane;
@@ -36,9 +37,16 @@ public class Lab8 extends Application {
             rootPane.setId("rootPanel");
             ArrayList<Card> cards = new ArrayList<>();
             Card myCard = new Card(Card.Suits.Diamonds,"K",true);
-            cards.add(myCard);
+            myCard.setRotate(-30);
+            Card myCard2 = new Card(Card.Suits.Diamonds,"Q",true);
+            myCard2.setRotate(30);
+            myCard2.setTranslateX(90);
+            Group hand = new Group();
+            hand.getChildren().addAll(myCard,myCard2);
+            hand.setRotate(180);
+            hand.setTranslateX(100);
 
-            rootPane.getChildren().addAll(cards);
+            rootPane.getChildren().addAll(hand);
         }
 
         return rootPane;
