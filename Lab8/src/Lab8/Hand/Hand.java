@@ -5,18 +5,17 @@ import javafx.scene.Group;
 
 import java.util.ArrayList;
 
-/**
- * Created by Nathan on 10/9/2014.
- */
 public class Hand {
 
     private ArrayList<Card> playerHand;
+    public Group displayHand;
 
     public Hand(){
         playerHand = new ArrayList<Card>();
     }
 
     public Hand(ArrayList<Card> cards){
+        displayHand = new Group();
         playerHand = new ArrayList<Card>(cards);
 
     }
@@ -63,5 +62,31 @@ public class Hand {
 
     public Group getHand(){
 
+        double displayAngle = -30.0;
+        double displayPositionX = 0.0;
+
+        for( int i = 0; i < playerHand.size(); i++){
+            playerHand.get(i).setRotate(displayAngle);
+            playerHand.get(i).setTranslateX(displayPositionX);;
+
+            displayHand.getChildren().add(playerHand.get(i));
+
+            displayAngle += 15.0;
+            displayPositionX += 35.0;
+        }
+
+        return displayHand;
+    }
+
+    public void setRotation(double rotate){
+        displayHand.setRotate(rotate);
+    }
+
+    public void setXTranslation(double xTranslation){
+        displayHand.setTranslateX(xTranslation);
+    }
+
+    public void setYTranslation(double yTranslation){
+        displayHand.setTranslateY(yTranslation);
     }
 }
