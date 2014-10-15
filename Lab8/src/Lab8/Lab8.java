@@ -49,9 +49,9 @@ public class Lab8 extends Application {
             card1.get(4).setFaceShown(true);
 
             Hand hand1 = new Hand(card1);
-            hand1.setRotation(180.0);
-            hand1.setXTranslation(275.0);
-            hand1.setYTranslation(50);
+            hand1.setRotate(180.0);
+            hand1.setTranslateX(275.0);
+            hand1.setTranslateY(50);
 
             //Create the 2nd hand
             ArrayList<Card> card2 = new ArrayList<>();
@@ -64,9 +64,9 @@ public class Lab8 extends Application {
             card2.get(4).setFaceShown(true);
 
             Hand hand2 = new Hand(card2);
-            hand2.setRotation(270.0);
-            hand2.setXTranslation(550.0);
-            hand2.setYTranslation(275.0);
+            hand2.setRotate(270.0);
+            hand2.setTranslateX(550.0);
+            hand2.setTranslateY(275.0);
 
             //Create the 3rd hand
             ArrayList<Card> card3 = new ArrayList<>();
@@ -79,9 +79,9 @@ public class Lab8 extends Application {
             card3.get(4).setFaceShown(true);
 
             Hand hand3 = new Hand(card3);
-            hand3.setRotation(90.0);
-            hand3.setXTranslation(25.0);
-            hand3.setYTranslation(275.0);
+            hand3.setRotate(90.0);
+            hand3.setTranslateX(25.0);
+            hand3.setTranslateY(275.0);
 
             //Create the 4th hand
             ArrayList<Card> card4 = new ArrayList<>();
@@ -94,10 +94,10 @@ public class Lab8 extends Application {
             card4.get(4).setFaceShown(true);
 
             Hand hand4 = new Hand(card4);
-            hand4.setXTranslation(275.0);
-            hand4.setYTranslation(500.0);
+            hand4.setTranslateX(275.0);
+            hand4.setTranslateY(500.0);
 
-            rootPane.getChildren().addAll(hand1.getHand(), hand2.getHand(), hand3.getHand(), hand4.getHand());
+            rootPane.getChildren().addAll(hand1, hand2, hand3, hand4);
 
         }
 

@@ -5,19 +5,18 @@ import javafx.scene.Group;
 
 import java.util.ArrayList;
 
-public class Hand {
+public class Hand extends Group{
 
     private ArrayList<Card> playerHand;
-    public Group displayHand;
+    //public Group displayHand;
 
     public Hand(){
         playerHand = new ArrayList<Card>();
     }
 
     public Hand(ArrayList<Card> cards){
-        displayHand = new Group();
         playerHand = new ArrayList<Card>(cards);
-
+        draw();
     }
 
     public Card getCard(int index){
@@ -26,22 +25,27 @@ public class Hand {
 
     public void removeCard(int index){
         playerHand.remove(index);
+        draw();
     }
 
     public void removeCard(Card card){
         playerHand.remove(card);
+        draw();
     }
 
     public void addCard(Card card){
         playerHand.add(card);
+        draw();
     }
 
     public void addCards(ArrayList<Card> cards){
         playerHand.addAll(cards);
+        draw();
     }
 
     public void insertCard(int index,Card card){
         playerHand.add(index,card);
+        draw();
     }
 
     public void clear(){
@@ -60,8 +64,7 @@ public class Hand {
 
     }
 
-    public Group getHand(){
-
+    private void draw(){
         double displayAngle = -30.0;
         double displayPositionX = 0.0;
 
@@ -69,24 +72,11 @@ public class Hand {
             playerHand.get(i).setRotate(displayAngle);
             playerHand.get(i).setTranslateX(displayPositionX);;
 
-            displayHand.getChildren().add(playerHand.get(i));
+            this.getChildren().add(playerHand.get(i));
 
             displayAngle += 15.0;
             displayPositionX += 35.0;
         }
-
-        return displayHand;
     }
 
-    public void setRotation(double rotate){
-        displayHand.setRotate(rotate);
-    }
-
-    public void setXTranslation(double xTranslation){
-        displayHand.setTranslateX(xTranslation);
-    }
-
-    public void setYTranslation(double yTranslation){
-        displayHand.setTranslateY(yTranslation);
-    }
 }
