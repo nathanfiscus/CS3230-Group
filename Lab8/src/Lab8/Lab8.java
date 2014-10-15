@@ -1,6 +1,8 @@
 package Lab8;
 
 import Lab8.Deck.Cards.Card;
+import Lab8.Deck.Cards.Card1;
+import Lab8.Deck.Deck;
 import Lab8.Hand.Hand;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -34,14 +36,17 @@ public class Lab8 extends Application {
         if(null == rootPane) {
             rootPane = new Pane();
             rootPane.setId("rootPanel");
-
+            Deck cardDeck = new Deck();
+            cardDeck.shuffle();
             //Create the 1st hand
             ArrayList<Card> card1 = new ArrayList<>();
-            card1.add(new Card(Card.Suits.Diamonds, "K", false));
-            card1.add(new Card(Card.Suits.Diamonds,"Q",false));
-            card1.add(new Card(Card.Suits.Diamonds,"5",false));
-            card1.add(new Card(Card.Suits.Diamonds,"8",true));
-            card1.add(new Card(Card.Suits.Diamonds,"10",true));
+            card1.add(cardDeck.deal());
+            card1.add(cardDeck.deal());
+            card1.add(cardDeck.deal());
+            card1.add(cardDeck.deal());
+            card1.add(cardDeck.deal());
+            card1.get(3).setFaceShown(true);
+            card1.get(4).setFaceShown(true);
 
             Hand hand1 = new Hand(card1);
             hand1.setRotation(180.0);
@@ -50,11 +55,13 @@ public class Lab8 extends Application {
 
             //Create the 2nd hand
             ArrayList<Card> card2 = new ArrayList<>();
-            card2.add(new Card(Card.Suits.Spades, "K", false));
-            card2.add(new Card(Card.Suits.Spades,"Q",false));
-            card2.add(new Card(Card.Suits.Spades,"5",false));
-            card2.add(new Card(Card.Suits.Spades,"8",true));
-            card2.add(new Card(Card.Suits.Spades,"10",true));
+            card2.add(cardDeck.deal());
+            card2.add(cardDeck.deal());
+            card2.add(cardDeck.deal());
+            card2.add(cardDeck.deal());
+            card2.add(cardDeck.deal());
+            card2.get(3).setFaceShown(true);
+            card2.get(4).setFaceShown(true);
 
             Hand hand2 = new Hand(card2);
             hand2.setRotation(270.0);
@@ -63,11 +70,13 @@ public class Lab8 extends Application {
 
             //Create the 3rd hand
             ArrayList<Card> card3 = new ArrayList<>();
-            card3.add(new Card(Card.Suits.Clubs, "K", false));
-            card3.add(new Card(Card.Suits.Clubs,"Q",false));
-            card3.add(new Card(Card.Suits.Clubs,"5",false));
-            card3.add(new Card(Card.Suits.Clubs,"8",true));
-            card3.add(new Card(Card.Suits.Clubs,"10",true));
+            card3.add(cardDeck.deal());
+            card3.add(cardDeck.deal());
+            card3.add(cardDeck.deal());
+            card3.add(cardDeck.deal());
+            card3.add(cardDeck.deal());
+            card3.get(3).setFaceShown(true);
+            card3.get(4).setFaceShown(true);
 
             Hand hand3 = new Hand(card3);
             hand3.setRotation(90.0);
@@ -76,11 +85,13 @@ public class Lab8 extends Application {
 
             //Create the 4th hand
             ArrayList<Card> card4 = new ArrayList<>();
-            card4.add(new Card(Card.Suits.Hearts, "K", false));
-            card4.add(new Card(Card.Suits.Hearts,"Q",false));
-            card4.add(new Card(Card.Suits.Hearts,"5",false));
-            card4.add(new Card(Card.Suits.Hearts,"8",true));
-            card4.add(new Card(Card.Suits.Hearts,"10",true));
+            card4.add(cardDeck.deal());
+            card4.add(cardDeck.deal());
+            card4.add(cardDeck.deal());
+            card4.add(cardDeck.deal());
+            card4.add(cardDeck.deal());
+            card4.get(3).setFaceShown(true);
+            card4.get(4).setFaceShown(true);
 
             Hand hand4 = new Hand(card4);
             hand4.setXTranslation(275.0);
