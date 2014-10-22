@@ -12,8 +12,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -33,7 +36,11 @@ public class ChatClient extends Application {
     private Scene primaryScene;
     private Pane rootPane;
     private TextField txtInput;
+    private TextField tBox;
     private TextArea txtDisplay;
+    private String serverName;
+    private String userName;
+    private Stage dialog;
 
     public static void main(String[] args) {
         launch(args);
@@ -66,6 +73,9 @@ public class ChatClient extends Application {
         txtInput.setPrefWidth(400);
 
         this.primaryStage.show();
+
+        getServerAddress();
+        getName();
         Thread th = new Thread(run());
         th.start();
 
@@ -94,7 +104,7 @@ public class ChatClient extends Application {
                     }
                 }
             });
-            txtDisplay.appendText("tst");
+            txtDisplay.appendText("");
             rootPane.getChildren().addAll(txtDisplay,txtInput);
 
 
@@ -103,27 +113,67 @@ public class ChatClient extends Application {
         return rootPane;
     }
 
-        private String getServerAddress() {
-            return JOptionPane.showInputDialog(new Frame(),
-                    "Enter IP Address of Server",
-                    "Welcome to the Chatter",
-                    JOptionPane.QUESTION_MESSAGE);
+        private void getServerAddress() {
+
+            dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(this.primaryStage);
+            VBox dialogVbox = new VBox(20);
+            tBox = new TextField();
+            tBox.addEventHandler(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+                        @Override
+                        public void handle(KeyEvent e) {
+                            if (e.getCharacter().equals("\r")) {
+                                serverName = tBox.getText();
+                                dialog.close();
+                            }
+                        }
+                    });
+            dialogVbox.getChildren().addAll(new Text("Enter IP Address of Server:"), tBox);
+            Scene dialogScene = new Scene(dialogVbox, 200, 100);
+            dialog.setScene(dialogScene);
+            dialog.showAndWait();
+
+
+//            return JOptionPane.showInputDialog(new Frame(),
+//                    "Enter IP Address of Server",
+//                    "Welcome to the Chatter",
+//                    JOptionPane.QUESTION_MESSAGE);
         }
 
-        private String getName() {
-            return JOptionPane.showInputDialog(
-                    new Frame(),
-                    "Choose a screen name:",
-                    "Screen name selection",
-                    JOptionPane.PLAIN_MESSAGE);
+        private void getName() {
+
+            dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(this.primaryStage);
+            VBox dialogVbox = new VBox(20);
+            tBox = new TextField();
+            tBox.addEventHandler(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent e) {
+                    if (e.getCharacter().equals("\r")) {
+                        userName = tBox.getText();
+                        dialog.close();
+                    }
+                }
+            });
+            dialogVbox.getChildren().addAll(new Text("Choose a screen name:"), tBox);
+            Scene dialogScene = new Scene(dialogVbox, 200, 100);
+            dialog.setScene(dialogScene);
+            dialog.showAndWait();
+
+//            return JOptionPane.showInputDialog(
+//                    new Frame(),
+//                    "Choose a screen name:",
+//                    "Screen name selection",
+//                    JOptionPane.PLAIN_MESSAGE);
         }
 
         private Task run(){
             return new Task<Integer>() {
                 protected Integer call()
                         throws IOException {
-                    String serverAddress = getServerAddress();
-                    Socket socket = new Socket(serverAddress, 9001);
+                    Socket socket = new Socket(serverName, 9001);
                     serverReceiver = new
 
                             BufferedReader(new InputStreamReader(socket.getInputStream()
@@ -142,7 +192,7 @@ public class ChatClient extends Application {
                         final String line = serverReceiver.readLine();
                         System.out.println("response received");
                         if (line.startsWith("SUBMITNAME")) {
-                            out.println(getName());
+                            out.println(userName);
                         } else if (line.startsWith("NAMEACCEPTED")) {
                             txtInput.setEditable(true);
                         } else if (line.startsWith("MESSAGE")) {
