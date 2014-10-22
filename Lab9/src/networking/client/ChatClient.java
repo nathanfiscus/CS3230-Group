@@ -1,5 +1,7 @@
 package networking.client;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
@@ -10,6 +12,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -20,7 +24,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import static com.sun.glass.events.WindowEvent.*;
 
 public class ChatClient extends Application {
 
@@ -64,7 +67,6 @@ public class ChatClient extends Application {
 
         this.primaryStage.show();
         Thread th = new Thread(run());
-        th.setDaemon(true);
         th.start();
 
     }
@@ -92,6 +94,7 @@ public class ChatClient extends Application {
                     }
                 }
             });
+            txtDisplay.appendText("tst");
             rootPane.getChildren().addAll(txtDisplay,txtInput);
 
 
@@ -135,14 +138,23 @@ public class ChatClient extends Application {
                     while (true)
 
                     {
-                        String line = serverReceiver.readLine();
+                        System.out.println("waiting for server");
+                        final String line = serverReceiver.readLine();
+                        System.out.println("response received");
                         if (line.startsWith("SUBMITNAME")) {
                             out.println(getName());
                         } else if (line.startsWith("NAMEACCEPTED")) {
                             txtInput.setEditable(true);
                         } else if (line.startsWith("MESSAGE")) {
-                            txtDisplay.setText(txtDisplay.getText() + line.substring(8) + "\n");
+                            System.out.println("Message received");
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    txtDisplay.appendText(line.substring(8) + "\n");
+                                }
+                            });
                         }
+
                     }
                 }
             };
