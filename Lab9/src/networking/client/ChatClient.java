@@ -93,8 +93,9 @@ public class ChatClient extends Application {
         if(null == rootPane) {
             rootPane = new Pane();
             rootPane.setId("rootPanel");
-            txtInput = new TextField();
             txtDisplay = new TextArea();
+            txtInput = new TextField();
+            txtDisplay.setEditable(false);
             txtInput.addEventHandler(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>(){
                 @Override
                 public void handle(KeyEvent e) {
@@ -104,8 +105,9 @@ public class ChatClient extends Application {
                     }
                 }
             });
-            txtDisplay.appendText("");
-            rootPane.getChildren().addAll(txtDisplay,txtInput);
+
+            rootPane.getChildren().addAll(txtInput, txtDisplay);
+            txtInput.requestFocus();
 
 
         }
@@ -134,11 +136,6 @@ public class ChatClient extends Application {
             dialog.setScene(dialogScene);
             dialog.showAndWait();
 
-
-//            return JOptionPane.showInputDialog(new Frame(),
-//                    "Enter IP Address of Server",
-//                    "Welcome to the Chatter",
-//                    JOptionPane.QUESTION_MESSAGE);
         }
 
         private void getName() {
@@ -162,11 +159,6 @@ public class ChatClient extends Application {
             dialog.setScene(dialogScene);
             dialog.showAndWait();
 
-//            return JOptionPane.showInputDialog(
-//                    new Frame(),
-//                    "Choose a screen name:",
-//                    "Screen name selection",
-//                    JOptionPane.PLAIN_MESSAGE);
         }
 
         private Task run(){
