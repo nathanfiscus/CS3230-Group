@@ -1,11 +1,9 @@
 package Lab8;
 
 import Lab8.Deck.Cards.Card;
-import Lab8.Deck.Cards.Card1;
 import Lab8.Deck.Deck;
 import Lab8.Hand.Hand;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.layout.Pane;

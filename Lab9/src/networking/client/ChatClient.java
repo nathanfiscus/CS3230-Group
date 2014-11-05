@@ -13,14 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import javax.swing.*;
-import java.awt.*;
+import javafx.stage.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -94,6 +88,7 @@ public class ChatClient extends Application {
             rootPane = new Pane();
             rootPane.setId("rootPanel");
             txtDisplay = new TextArea();
+            txtDisplay.setFocusTraversable(false);
             txtInput = new TextField();
             txtDisplay.setEditable(false);
             txtInput.addEventHandler(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>(){
