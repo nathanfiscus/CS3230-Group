@@ -10,12 +10,22 @@ public class Track {
     private int albumID;
     private String trackName;
     private Time trackTime;
+    private int trackNubmer;
 
-    public Track(int ID, int AlbumID, String TrackName, Time TrackTime){
+    public Track(int ID, int AlbumID, int TrackNumber, String TrackName, Time TrackTime){
         this.trackID = ID;
         this.albumID = AlbumID;
         this.trackName = TrackName;
         this.trackTime = TrackTime;
+        this.trackNubmer = TrackNumber;
+    }
+
+    public int getTrackNubmer() {
+        return trackNubmer;
+    }
+
+    public void setTrackNubmer(int trackNubmer) {
+        this.trackNubmer = trackNubmer;
     }
 
     public int getTrackID() {

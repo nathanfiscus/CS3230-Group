@@ -191,8 +191,4 @@ public class Card extends Group {
         backGroup.getChildren().addAll(cardBack,imgViewBack);
         getChildren().addAll(cardBG, frontGroup, backGroup);
     }
-
-
-
-
 }
